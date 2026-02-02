@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelina Julie Cosmetics - Catálogo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E8B4B8;
+            --primary-dark: #D89BA0;
+            --secondary: #F5E6E8;
+            --accent: #C17D83;
+            --dark: #2D2424;
+            --light: #FAF5F6;
+            --shadow: rgba(193, 125, 131, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, var(--secondary) 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--dark);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: -5px;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(193, 125, 131, 0.1);
+            width: 300px;
+        }
+
+        .search-box::after {
+            content: '🔍';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--primary);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        /* Cart Button */
+        .cart-button {
+            padding: 0.6rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .cart-badge {
+            background: var(--dark);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '✨';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: -2rem;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '💄';
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.1;
+            bottom: -1rem;
+            right: 15%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Products Grid */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            animation: fadeIn 0.6s ease-out both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: var(--secondary);
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--secondary);
+        }
+
+        .product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .modal-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .modal-details .product-category {
+            margin-bottom: 1rem;
+        }
+
+        .modal-details .product-description {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-details .product-price {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .quantity-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .modal-add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                width: 100%;
+            }
+
+            .filter-btn {
+                flex: 1;
+                min-width: 100px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--accent);
+        }
+
+        .no-results h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>Angelina Julie</h1>
+                <p>Cosmetics</p>
+            </div>
+            <div class="search-filter">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar productos...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">Todos</button>
+                    <button class="filter-btn" data-category="maquillaje">Maquillaje</button>
+                    <button class="filter-btn" data-category="cuidado">Cuidado Personal</button>
+                    <button class="filter-btn" data-category="fragancias">Fragancias</button>
+                    <button class="filter-btn" data-category="sets">Sets</button>
+                </div>
+                <button class="cart-button" onclick="openCart()">
+                    🛒 Carrito
+                    <span id="cartBadge" class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Descubre tu Belleza</h2>
+        <p>Productos de alta calidad para realzar tu belleza natural</p>
+    </section>
+
+    <div class="container">
+        <div id="productsContainer" class="products-grid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <h3>No se encontraron productos</h3>
+            <p>Intenta con otra búsqueda o categoría</p>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-grid">
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div class="modal-details">
+                    <div id="modalCategory" class="product-category"></div>
+                    <h3 id="modalName"></h3>
+                    <p id="modalDescription" class="product-description"></p>
+                    <div id="modalPrice" class="product-price"></div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                        <span class="quantity-value" id="quantity">1</span>
+                        <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                    </div>
+                    <button class="add-to-cart modal-add-to-cart" onclick="addToCart()">
+                        🛒 Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Angelina Julie Cosmetics. Todos los derechos reservados.</p>
+        <p>Hecho con 💖 para realzar tu belleza</p>
+    </footer>
+
+    <script>
+        // CONFIGURACIÓN DE WHATSAPP - Cambia este número por el tuyo
+        const WHATSAPP_NUMBER = '57 3102061464'; // Formato: código país + número sin espacios ni signos
+        
+        // Carrito de compras
+        let cart = [];
+        
+        // Base de datos de productos
+        const products = [
+            {
+                id: 1,
+                name: "Set de Maquillaje Completo",
+                category: "sets",
+                description: "Kit completo con todo lo necesario para un look perfecto. Incluye sombras, labiales, brochas y más.",
+                price: 89900,
+                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500",
+                badge: "Popular"
+            },
+            {
+                id: 2,
+                name: "Desodorante Antitranspirante",
+                category: "cuidado",
+                description: "Protección de 48 horas con fragancia fresca y delicada. Sin alcohol.",
+                price: 15900,
+                image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=500",
+                badge: "Nuevo"
+            },
+            {
+                id: 3,
+                name: "Esmaltes MK Collection",
+                category: "maquillaje",
+                description: "Colección de esmaltes de larga duración con acabado brillante. Variedad de colores.",
+                price: 12900,
+                image: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=500",
+                badge: ""
+            },
+            {
+                id: 4,
+                name: "Perfume Floral Elegance",
+                category: "fragancias",
+                description: "Fragancia femenina con notas florales y frutales. Presentación de 50ml.",
+                price: 45900,
+                image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=500",
+                badge: "Bestseller"
+            },
+            {
+                id: 5,
+                name: "Crema Facial Hidratante",
+                category: "cuidado",
+                description: "Hidratación profunda de 24 horas con vitamina E y colágeno. Para todo tipo de piel.",
+                price: 32900,
+                image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500",
+                badge: ""
+            },
+            {
+                id: 6,
+                name: "Labiales Mate Premium",
+                category: "maquillaje",
+                description: "Acabado mate de larga duración. No reseca los labios. Disponible en 12 tonos.",
+                price: 18900,
+                image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500",
+                badge: "Nuevo"
+            },
+            {
+                id: 7,
+                name: "Set de Brochas Profesional",
+                category: "sets",
+                description: "Kit con 12 brochas de maquillaje profesional. Cerdas sintéticas suaves.",
+                price: 54900,
+                image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500",
+                badge: ""
+            },
+            {
+                id: 8,
+                name: "Body Splash Tropical",
+                category: "fragancias",
+                description: "Fragancia corporal ligera con aroma tropical. Refrescante y duradera.",
+                price: 24900,
+                image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500",
+                badge: "Popular"
+            },
+            {
+                id: 9,
+                name: "Máscara de Pestañas Volumen",
+                category: "maquillaje",
+                description: "Máscara que proporciona volumen y longitud. A prueba de agua.",
+                price: 22900,
+                image: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500",
+                badge: ""
+            },
+            {
+                id: 10,
+                name: "Sérum Facial Iluminador",
+                category: "cuidado",
+                description: "Sérum con vitamina C que ilumina y unifica el tono de la piel.",
+                price: 38900,
+                image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500",
+                badge: "Bestseller"
+            },
+            {
+                id: 11,
+                name: "Paleta de Sombras Nude",
+                category: "maquillaje",
+                description: "12 tonos nude para looks naturales y sofisticados. Alta pigmentación.",
+                price: 42900,
+                image: "https://images.unsplash.com/photo-1583241800698-4d94b489bc6a?w=500",
+                badge: "Popular"
+            },
+            {
+                id: 12,
+                name: "Kit de Cuidado Corporal",
+                category: "sets",
+                description: "Set completo con crema, exfoliante y loción corporal. Aroma delicado.",
+                price: 67900,
+                image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500",
+                badge: "Nuevo"
+            }
+        ];
+
+        let currentCategory = 'all';
+        let searchTerm = '';
+
+        // Renderizar productos
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            const noResults = document.getElementById('noResults');
+            
+            let filteredProducts = products.filter(product => {
+                const matchesCategory = currentCategory === 'all' || product.category === currentCategory;
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    product.description.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filteredProducts.length === 0) {
+                container.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            container.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            container.innerHTML = filteredProducts.map((product, index) => `
+                <div class="product-card" style="animation-delay: ${index * 0.1}s" onclick="openModal(${product.id})">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    <div class="product-info">
+                        <div class="product-category">${getCategoryName(product.category)}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-footer">
+                            <div class="product-price">$${formatPrice(product.price)}</div>
+                            <button class="add-to-cart" onclick="event.stopPropagation(); quickAdd(${product.id})">
+                                🛒 Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Obtener nombre de categoría
+        function getCategoryName(category) {
+            const categories = {
+                'maquillaje': 'Maquillaje',
+                'cuidado': 'Cuidado Personal',
+                'fragancias': 'Fragancias',
+                'sets': 'Sets & Kits'
+            };
+            return categories[category] || category;
+        }
+
+        // Formatear precio
+        function formatPrice(price) {
+            return price.toLocaleString('es-CO');
+        }
+
+        // Filtros
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+                renderProducts();
+            });
+        });
+
+        // Búsqueda
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            searchTerm = e.target.value;
+            renderProducts();
+        });
+
+        // Modal
+        let currentProduct = null;
+
+        function openModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            if (!currentProduct) return;
+
+            document.getElementById('modalImage').src = currentProduct.image;
+            document.getElementById('modalCategory').textContent = getCategoryName(currentProduct.category);
+            document.getElementById('modalName').textContent = currentProduct.name;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            document.getElementById('modalPrice').textContent = '$' + formatPrice(currentProduct.price);
+            document.getElementById('quantity').textContent = '1';
+            
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function increaseQuantity() {
+            const quantityEl = document.getElementById('quantity');
+            let quantity = parseInt(quantityEl.textContent);
+            quantityEl.textContent = quantity + 1;
+        }
+
+        function decreaseQuantity() {
+            const quantityEl = document.getElementById('quantity');
+            let quantity = parseInt(quantityEl.textContent);
+            if (quantity > 1) {
+                quantityEl.textContent = quantity - 1;
+            }
+        }
+
+        function addToCart() {
+            const quantity = parseInt(document.getElementById('quantity').textContent);
+            
+            // Verificar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.id === currentProduct.id);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    quantity: quantity
+                });
+            }
+            
+            updateCartBadge();
+            alert(`✅ ${quantity} unidad(es) de "${currentProduct.name}" agregado(s) al carrito!`);
+            closeModal();
+        }
+
+        function quickAdd(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartBadge();
+            alert(`✅ "${product.name}" agregado al carrito!`);
+        }
+        
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (totalItems > 0) {
+                badge.textContent = totalItems;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+        
+        function openCart() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            let message = '🛍️ *PEDIDO ANGELINA JULIE COSMETICS*\n\n';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                message += `• ${item.name}\n`;
+                message += `  Cantidad: ${item.quantity}\n`;
+                message += `  Precio: $${formatPrice(item.price)}\n`;
+                message += `  Subtotal: $${formatPrice(subtotal)}\n\n`;
+            });
+            
+            message += `💰 *TOTAL: $${formatPrice(total)}*\n\n`;
+            message += 'Por favor confirmar disponibilidad y forma de pago.';
+            
+            // Codificar mensaje para WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        function clearCart() {
+            if (confirm('¿Seguro que deseas vaciar el carrito?')) {
+                cart = [];
+                updateCartBadge();
+                alert('Carrito vaciado');
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Inicializar
+        renderProducts();
+    </script>
+</body>
+</html>
